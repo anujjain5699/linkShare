@@ -3,7 +3,7 @@ const connectDB=require('./controller/db')
 const authRoutes=require('./routes/authRoutes')
 const app=express();
 require('dotenv').config({path:'./config.env'})
-PORT=process.env.PORT;
+PORT=process.env.PORT || 3000;
 
 //middleware
 app.use(express.json()); 

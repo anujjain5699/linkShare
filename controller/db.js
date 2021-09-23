@@ -5,7 +5,7 @@ function connectDB(){
     //database connection
     mongoose.connect(process.env.MONGOURL)
         .then(()=>{
-            console.log(`DB connected listening on http://localhost:${process.env.PORT}`)
+            console.log(`DB connected`)
         })
         .catch(err=>console.log(err.message))
 }
