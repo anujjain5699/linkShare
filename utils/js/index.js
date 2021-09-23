@@ -15,7 +15,7 @@ const emailForm = document.querySelector("#emailForm");
 
 const toast = document.querySelector(".toast");
 
-const baseURL = "https://innshare.herokuapp.com";
+const baseURL = "https://linkshareto.herokuapp.com";
 const uploadURL = `${baseURL}/api/files`;
 const emailURL = `${baseURL}/api/files/send`;
 
@@ -102,8 +102,8 @@ const uploadFile = () => {
 
   // handle error
   xhr.upload.onerror = function () {
-    showToast(`Error in upload: ${xhr.status}.`);
     fileInput.value = ""; // reset the input
+    showToast(`Error in upload: ${xhr.statusText}.`);
   };
 
   // listen for response which will give the link

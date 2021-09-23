@@ -1,14 +1,21 @@
 const express=require('express')
 const connectDB=require('./controller/db')
 const authRoutes=require('./routes/authRoutes')
+const cors=require('cors')
 const app=express();
 require('dotenv').config({path:'./config.env'})
 const PORT=process.env.PORT || 3000;
+
+//cors
+const corsOption={
+    origin:process.env.ALLOWED_CLIENTS.split(',')
+}
 
 //middleware
 app.use(express.json()); 
 app.set('view engine','ejs')
 app.use(express.static('public'))
+app.use(cors(corsOption))
 
 //connect database
 connectDB()
