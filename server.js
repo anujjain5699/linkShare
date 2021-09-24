@@ -11,6 +11,7 @@ const corsOption={
     origin:process.env.ALLOWED_CLIENTS.split(',')
 }
 
+
 //middleware
 app.use(express.json()); 
 app.set('view engine','ejs')
