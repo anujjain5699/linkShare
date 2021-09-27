@@ -10,4 +10,10 @@ router.get('/files/download/:uuid',authController.files_download)
 //send file via email
 router.post('/api/files/send',authController.email_post)
 
+router.get('/',(req,res) =>{
+    try{
+        res.render('index')
+    }catch(e){console.log(e.message)}
+})
+
 module.exports=router

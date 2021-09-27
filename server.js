@@ -3,6 +3,7 @@ const connectDB=require('./controller/db')
 const authRoutes=require('./routes/authRoutes')
 const cors=require('cors')
 const app=express();
+const path = require('path')
 require('dotenv').config({path:'./config.env'})
 const PORT=process.env.PORT || 3000;
 
@@ -15,14 +16,8 @@ const corsOption={
 //middleware
 app.use(express.json()); 
 app.set('view engine','ejs')
-app.use(express.static('public'))
+app.use('/public',express.static(path.join(__dirname, 'public')))
 app.use(cors(corsOption))
-// app.use(function(req, res,next){
-//     res.header("Access-Control-Allow-Origin", "*")
-//     res.header("Access-Control-Allow-Methods", "POST,GET,DELETE,PUT")
-//     res.header("Access-Control-Allow-Headers", "Origin,X-requested-With,Content-Type,Accept")
-//     next()
-// })
 
 //connect database
 connectDB()
@@ -31,5 +26,5 @@ connectDB()
 app.use(authRoutes);
 
 app.listen(PORT,()=>{
-    console.log(`Listening on port`);
+    console.log(`Listening on port localhost`);
 })

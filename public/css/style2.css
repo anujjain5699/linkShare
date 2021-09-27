@@ -1,17 +1,29 @@
 :root {
-    --main-bg-color: #edf5fe;
-    --light-blue: #03a9f4;
-    --border-color: #0288d147;
-    --container-width: 500px;
+    --main-bg-color: #eae4e9;
+    --light-blue: #c38e70;
+    --border-color: #003049;
+    --container-width: 450px;
   }
   
-  body {
+  body,html {
     font-family: system-ui;
     background: var(--main-bg-color);
-    height: 98vh;
-    overflow: hidden;
+    height: 100%;
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    scroll-padding-bottom: 10px;
   }
   
+  html{
+    overflow:hidden;
+  }
+
+  body{
+    overflow:scroll;
+    flex-direction:row;
+  }
+
   .logo {
     position: absolute;
     top: 10px;
@@ -22,7 +34,7 @@
   .image-vector {
     width: 50vw;
     height: 50vh;
-    background: url(/undraw-upload.svg) no-repeat center;
+    background: url(/public/img/undraw-upload.svg) no-repeat center;
     background-size: contain;
   }
   
@@ -31,25 +43,23 @@
   .drop-zone {
     display: flex;
     align-items: center;
-    justify-content: center;
-  }
-  .upload-container,
-  .drop-zone {
     flex-direction: column;
-  }
+  } 
   
   .upload-container {
-    background: #ffffff;
+    justify-content: center;
+    background: #e9edc9;
     border-radius: 25px;
     box-shadow: 0px 20px 20px 0px #00000017;
   }
   
   .drop-zone {
     width: var(--container-width);
-    min-height: 200px;
-    border: 2px dashed var(--border-color);
+    min-height: 150px;
+    border: 3px dashed var(--border-color);
     border-radius: 10px;
-    margin: 30px;
+    padding-top: 15px;
+    margin: 20px;
     transition: 0.2s all ease-in;
   }
   
@@ -167,6 +177,8 @@
     margin-top: 0;
   }
   
+ 
+
   .sharing-container .input-container {
     display: flex;
     position: relative;
@@ -176,13 +188,13 @@
   
   .sharing-container .input-container input {
     width: 100%;
-    border-radius: 3px;
     padding: 10px 15px;
-    font-size: 20px;
+    font-size: 15px;
     border: 2px dashed var(--border-color);
-    border-radius: 6px;
+    border-radius: 3px;
     background: #f5fcff;
     color: #607d8b;
+    box-sizing: border-box;
   }
   
   .sharing-container img {
@@ -195,15 +207,17 @@
     background: #f5fcff;
   }
   
+  
+
   .email-container form {
     border: 2px solid var(--border-color);
     width: 100%;
-    padding: 15px;
-    box-sizing: border-box;
+    padding: 15px;   
     border-radius: 10px;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
   }
   .email-container,
   .send-btn-container {
@@ -221,7 +235,7 @@
     border-bottom: 2px solid var(--border-color);
     height: 19px;
     font-size: 18px;
-    text-align: center;
+    align-items: center;
   }
   
   .email-container input:focus {
@@ -247,11 +261,11 @@
   }
   
   .toast {
-    position: absolute;
-    bottom: 10px;
-    right: 50%;
-    transform: translate(50%, 60px);
-    padding: 10px 20px;
+    border: 4px dashed var(--border-color);
+    border-radius: 25px;
+    padding: 1% 20px;
+    transform: translate(0px, 0px);
+    margin-bottom: 1%;
     background: var(--light-blue);
     color: #fff;
     border-radius: 5px;
@@ -265,11 +279,18 @@
     transform: translate(50%, 0);
   }
   
+  .upload-vector{
+    background: url(/public/img/undraw-upload.svg) no-repeat center;
+    background-size: contain;
+    height: 50vh;
+    width: 50vw;
+  }
+
   @media screen and (max-width: 900px) {
     :root {
       --container-width: 320px;
     }
-    .image-vector {
+    .upload-vector {
       display: none;
     }
     .email-container .filed {
@@ -277,5 +298,11 @@
     }
     .email-container .filed {
       width: 300px;
+    }
+    .toast{
+      transform: translate(0, 5%);
+    }
+    .logo{
+      display: none;
     }
   }

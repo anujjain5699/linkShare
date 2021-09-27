@@ -28,9 +28,9 @@ browseBtn.addEventListener("click", () => {
 
 dropZone.addEventListener("drop", (e) => {
   e.preventDefault();
-  console.log("type of"+e.dataTransfer.files.kind);
+  //console.log("type of"+e.dataTransfer.files.kind);
   const files = e.dataTransfer.files;
-  console.log(files.length)
+  //console.log(files.length)
   if ((typeof files ==="undefined")||files.length > 1 ) {
     showToast("You can't upload multiple files");
     setTimeout(function(){ location.reload() }, 1000);
@@ -45,10 +45,10 @@ dropZone.addEventListener("drop", (e) => {
       return;
     }
   }
-  if (files.length) {
-    fileInput.files = files;
-    uploadFile()
-  }
+  // if (files.length) {
+  //   fileInput.files = files;
+  //   uploadFile()
+  // }
   dropZone.classList.remove("dragged");
 });
 
@@ -57,25 +57,25 @@ dropZone.addEventListener("dragover", (e) => {
   if (!dropZone.classList.contains("dragged")) {
     dropZone.classList.add("dragged");
   }
-
-  // console.log("dropping file");
 });
 
 dropZone.addEventListener("dragleave", (e) => {
   dropZone.classList.remove("dragged");
 
-  console.log("drag ended");
+  //console.log("drag ended");
 });
 
 // file input change and uploader
 fileInput.addEventListener("change", () => {
   if (fileInput.files.length > 1) {
+    //console.log("Upload only 1 file......")
     fileInput.value = ""
     showToast("Upload only 1 file")
     setTimeout(function(){ location.reload() }, 1000);
     return;
   }
   if (fileInput.files[0].size > maxAllowedSize) {
+   // console.log("Max file size is 100MB......")
     showToast("Max file size is 100MB");
     fileInput.value=""; // reset the input
     setTimeout(function(){ location.reload() }, 1000);
@@ -102,7 +102,7 @@ const uploadFile = () => {
     setTimeout(function(){ location.reload() }, 1000);
     return;
   }
-  console.log(fileInput.files)
+  //console.log(fileInput.files)
   const file = fileInput.files[0];
   if ((typeof file ==="undefined")||file.size > maxAllowedSize) {
     showToast("Max file size is 100MB");
@@ -151,7 +151,7 @@ const uploadFile = () => {
         }
       } else {
         // Oh no! There has been an error with the request!
-        console.log("xhr request error")
+        //console.log("xhr request error")
         showToast("There might be some error...")
         setTimeout(function(){ location.reload() }, 1000);
       }
@@ -172,7 +172,7 @@ const onFileUploadSuccess = (res) => {
   progressContainer.style.display = "none"; // hide the box
 
   const { file: url } = JSON.parse(res);
-  console.log(url);
+  //console.log(url);
   sharingContainer.style.display = "block";
   fileURL.value = url;
 };
@@ -214,13 +214,16 @@ emailForm.addEventListener("submit", (e) => {
 let toastTimer;
 // the toast function
 const showToast = (msg) => {
+  clearTimeout(toastTimer);
   toast.innerText = msg;
+  // console.log(`translate(${window.screen.width},${window.screen.width})`)
   toast.style.transform = "translate(-50%,0)"
   clearTimeout(toastTimer);
   toast.classList.add("show");
   toastTimer = setTimeout(() => {
     toast.style.transform = "translate(-50%,60px)"
     toast.classList.remove("show");
+    toast.innerText = "Welcome";
   }, 3000);
 };
 
